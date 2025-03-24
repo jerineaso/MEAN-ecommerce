@@ -1,0 +1,114 @@
+@import "../0-base/mediaquery";
+
+/* You can add global styles to this file, and also import other style files */
+*, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  // Setting other sizes in rem so that this root will be auto calculated at there
+  // Eg. 1rem : 14px; for mob, 1rem : 16px for lap size
+  // Mob Devices
+  font-size: 14px;
+  // Figma Size (Normal Lap Size)
+  @include media(">=figma") {
+    font-size: 16px;
+  }
+  // Larger screen (TV's)
+  @include media(">=LGdesktop") {
+    font-size: 18px;
+  }
+}
+
+* {
+  @include scrollbars(0.5rem, rgba(50, 69, 82, 0.35), #f8fafb);
+}
+
+body {
+  -webkit-animation-delay: 0.1s;
+  -webkit-animation-name: fontfix;
+  -webkit-animation-duration: 0.1s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-timing-function: linear;
+  line-height: 1.5;
+  text-rendering: optimizeSpeed;
+  min-height: 100%;
+  overflow-x: hidden;
+  background-color: #eff4f6;
+  position: relative;
+  scroll-behavior: smooth;
+}
+
+// animation
+@-webkit-keyframes fontfix {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Prevent font size inflation */
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  scroll-behavior: smooth;
+  font-family: "Poppins", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+/* Remove default margin in favour of better control in authored CSS */
+body,
+figure, blockquote, dl, dd {
+  margin-block-end: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+// Anchor Tag
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+    max-width: 100%;
+    display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input, button,
+textarea, select {
+    font-family: inherit;
+    font-size: inherit;
+    width: 100%;
+    border: none;
+}
+
+input::placeholder {
+    font-size: var(--fs-btn) !important;
+}
+
+/* Make sure textareas without a rows attribute are not tiny */
+textarea:not([rows]) {
+    min-height: 10em;
+    width: 100%;
+}
+
+/* Anything that has been anchored to should have extra scroll margin */
+:target {
+    scroll-margin-block: 5ex;
+}
