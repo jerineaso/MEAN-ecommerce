@@ -1,7 +1,10 @@
 // Importing sub style pages
+@import "./base/bases";
 @import "./base/color";
 @import "./base/typography";
 @import "./base/mediaqueries";
 
 @import "./helpers/icons";
 @import "./helpers/utility";
+
+@import "./modules/button";

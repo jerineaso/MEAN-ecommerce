@@ -34,9 +34,12 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles/styles.scss"
+              "src/styles/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -62,7 +65,14 @@
             },
             "development": {
               "buildOptimizer": false,
-              "optimization": false,
+              "optimization": {
+                "fonts": {
+                  "inline": true
+                },
+                "styles": {
+                  "inlineCritical": true
+                }
+              },
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
