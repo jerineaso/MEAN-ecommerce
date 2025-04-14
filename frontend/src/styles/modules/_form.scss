@@ -1,0 +1,44 @@
+@import '../base/color';
+
+.form-control {
+  border: 0.0625rem solid $pure-white;
+  border-radius: 0.25rem;
+  color: $pure-white;
+  font-size: 1rem;
+  &:focus {
+    border: 0.0625rem solid $pure-white !important;
+    box-shadow: none !important;
+    outline: none;
+  }
+  &::placeholder {
+    color: $second-4 !important;
+    font-weight: 400;
+    font-size: .875rem;
+  }
+  &:not(textarea) {
+    height: 2.5rem;
+  }
+}
+
+.form-wrapper {
+  position: relative;
+
+  .form-control {
+    padding-right: 2.5rem !important;
+  }
+
+  .form-control-icon {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $pure-white;
+    pointer-events: none;
+    font-size: 1rem;
+  }
+}
+
+.form-bg-black {
+  background-color: $pure-black !important;
+  color: $pure-white !important;
+}

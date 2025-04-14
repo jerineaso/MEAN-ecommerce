@@ -45,6 +45,7 @@ $primary-2  : #363738;
 $second-1   : #F5F5F5;
 $second-2   : #FEFAF1;
 $second-3   : #DB4444;
+$second-4   : #7D8184;
 
 // Other Set
 $other-1    : #47B486;
@@ -52,4 +53,8 @@ $other-2    : #DB4444;
 
 .link-white {
   color: $pure-white;
+}
+
+.greyish {
+  color: $second-4;
 }

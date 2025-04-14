@@ -1,50 +1,49 @@
-<div class="bg-black">
+<div class="bg-black text-white">
   <div class="container py-4">
     <div class="row align-items-baseline gap-10">
-      <div class="col">
+      <div *ngFor="let section of footerSections" class="col">
         <div class="fs-14 gap-8 vstack">
-          <a class="fw-600 fs-18 mb-2 fs-16 link-white text-nowrap">Exclusive</a>
-          <a class="link-white text-nowrap">Subscribe</a>
-          <a class="link-white text-nowrap">Get 10% off your first order</a>
-        </div>
-      </div>
-      <div class="col">
-        <div class="fs-14 gap-8 vstack">
-          <a class="fs-18 mb-2 link-white text-nowrap">Support</a>
-          <a class="link-white text-nowrap">111 Bijoy sarani, Dhaka,<br>  DH 1515, Bangladesh.</a>
-          <a class="link-white text-nowrap">exclusive@gmail.com</a>
-          <a class="link-white text-nowrap">+88015-88888-9999</a>
-        </div>
-      </div>
-      <div class="col">
-        <div class="fs-14 gap-8 vstack">
-          <a class="fs-18 mb-2 link-white text-nowrap">Account</a>
-          <a class="link-white text-nowrap">My Account</a>
-          <a class="link-white text-nowrap">Login / Register</a>
-          <a class="link-white text-nowrap">Cart</a>
-          <a class="link-white text-nowrap">Wishlist</a>
-          <a class="link-white text-nowrap">Shop</a>
-        </div>
-      </div>
-      <div class="col">
-        <div class="fs-14 gap-8 vstack">
-          <a class="fs-18 mb-2 link-white text-nowrap">Quick Link</a>
-          <a class="link-white text-nowrap">Privacy Policy</a>
-          <a class="link-white text-nowrap">Terms of Use</a>
-          <a class="link-white text-nowrap">FAQ</a>
-          <a class="link-white text-nowrap">Contact</a>
-        </div>
-      </div>
-      <div class="col">
-        <div class="fs-14 gap-8 vstack">
-          <a class="fs-18 mb-2 link-white text-nowrap">Download App</a>
-          <a class="link-white text-nowrap">Save $3 with App New User Only</a>
+          <a class="fw-600 fs-18 mb-2 link-white text-nowrap">{{ section.title }}</a>
+          <ng-container *ngFor="let item of section.items">
+            <ng-container *ngIf="!item.isInput; else emailInput">
+              <a class="link-white text-nowrap" [ngClass]="{ 'greyish' : section.title == 'Download App' }" [innerHTML]="item.text"></a>
+              <ng-container *ngIf="section?.title == 'Download App'">
+                <div class="qr-section">
+                  <div class="d-flex">
+                    <div class="left-qr">
+                      <img src="../../../../../assets/images/exlusive_qr.png" style="width: 5rem;" class="img-fluid object-fit-contain" alt="QR Code">
+                    </div>
+                    <div class="right-poster">
+                      <img src="../../../../../assets/images/g_pay.png" style="width: 6.5rem;" class="img-fluid object-fit-contain" alt="Google Pay Store">
+                      <img src="../../../../../assets/images/app_store.png" style="margin-left: 5px;width: 6rem;" class="img-fluid object-fit-contain" alt="App Store">
+                    </div>
+                  </div>
+                </div>
+                <div class="social-section">
+                  <div class="d-flex gap-4">
+                    <span><i class="icon-facebook"></i></span>
+                    <span><i class="icon-twitter"></i></span>
+                    <span><i class="icon-instagram"></i></span>
+                    <span><i class="icon-linkedin2"></i></span>
+                  </div>
+                </div>
+              </ng-container>
+            </ng-container>
+            <ng-template #emailInput>
+              <div class="form-wrapper">
+                <input type="email" inputmode="email" class="form-control form-bg-black" [placeholder]="item.placeholder">
+                <span class="form-control-icon">
+                  <i class="icon-send"></i>
+                </span>
+              </div>
+            </ng-template>
+          </ng-container>
         </div>
       </div>
     </div>
     <div class="row mt-3">
-      <div class="col-sm-12 text-center text-white mb-2 mb-md-0">
-        <p class="mb-0 fs-14">&copy; Copyright Exclusive 2025. All right reserved</p>
+      <div class="col-sm-12 text-center mb-2 mb-md-0">
+        <p class="mb-0 fs-14 greyish">&copy; Copyright Exclusive 2025. All right reserved</p>
       </div>
     </div>
   </div>
