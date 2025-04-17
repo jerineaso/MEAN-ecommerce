@@ -55,6 +55,14 @@ $other-2    : #DB4444;
   color: $pure-white;
 }
 
-.greyish {
+.greyish-text {
   color: $second-4;
+}
+
+.greyish-bg {
+  background-color: $second-4 !important;
+}
+
+.black-text {
+  color: $pure-black !important;
 }

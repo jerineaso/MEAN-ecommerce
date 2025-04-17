@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from './components/layout/footer/footer.component';
-import { TopHeaderComponent } from './components/layout/top-header/top-header.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HeaderComponent } from './components/layout/header/header.component';
 
 @NgModule({
   declarations: [
-    TopHeaderComponent,
+    HeaderComponent,
     FooterComponent
   ],
   imports: [
@@ -14,10 +14,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NgbModule
   ],
   exports: [
-    TopHeaderComponent,
+    HeaderComponent,
     FooterComponent
   ],
   providers: [
   ]
 })
+
 export class SharedModule { }

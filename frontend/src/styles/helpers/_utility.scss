@@ -102,10 +102,16 @@ $fontweight: (
   align-self: stretch;
 }
 
-.text-nowrap {
-  white-space: nowrap !important;
+.pointer {
+  cursor: pointer;
 }
 
-.w-15ch {
-  max-width: 15ch !important;
+.nav-link {
+  color: $pure-black !important;
+}
+
+.nav-link.active {
+  text-decoration: underline !important;
+  text-decoration-color: $second-4 !important;
+  text-underline-offset: 5px;
 }
