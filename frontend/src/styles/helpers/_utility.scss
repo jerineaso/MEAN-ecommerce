@@ -95,6 +95,7 @@ $fontweight: (
   }
 }
 
+// Flex Column
 .vstack {
   display: flex;
   flex: 1 1 auto;
@@ -102,14 +103,17 @@ $fontweight: (
   align-self: stretch;
 }
 
+// Pointer
 .pointer {
   cursor: pointer;
 }
 
+// Color for LI tag
 .nav-link {
   color: $pure-black !important;
 }
 
+// Active link
 .nav-link.active {
   text-decoration: underline !important;
   text-decoration-color: $second-4 !important;

@@ -26,6 +26,13 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-border::before {
+  display: inline-block;
+  color: white;
+  -webkit-text-fill-color: white;
+  -webkit-text-stroke: 1px black;
+}
+
 .icon-user1:before {
   content: "\e900";
 }

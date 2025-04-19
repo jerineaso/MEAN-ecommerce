@@ -27,6 +27,13 @@
     padding-right: 2.5rem !important;
   }
 
+  .form-control-normal {
+    background-color: $second-1 !important;
+    width: 15rem;
+    padding-right: 2.5rem !important;
+    border: none;
+  }
+
   .form-control-icon {
     position: absolute;
     right: 0.75rem;

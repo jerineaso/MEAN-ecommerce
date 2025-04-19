@@ -330,3 +330,9 @@ $unit-intervals: (
   @return $number * nth($units, $index);
 }
 
+// Margin left for lg
+@media (min-width: 992px) {
+  .ml-lg-15 {
+    margin-left: 15%;
+  }
+}
