@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './components/layout/header/header.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { HeaderComponent } from './components/layout/header/header.component';
   ],
   imports: [
     CommonModule,
-    NgbModule
+    NgbModule,
+    RouterModule
   ],
   exports: [
     HeaderComponent,
