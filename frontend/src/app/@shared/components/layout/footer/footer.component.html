@@ -3,7 +3,7 @@
     <div class="row align-items-baseline gap-10">
       <div *ngFor="let section of footerSections" class="col">
         <div class="fs-14 gap-8 vstack">
-          <a class="fw-600 fs-18 mb-2 link-white text-nowrap">{{ section.title }}</a>
+          <div class="fw-600 fs-18 mb-2 link-white text-nowrap">{{ section.title }}</div>
           <ng-container *ngFor="let item of section.items">
             <ng-container *ngIf="!item.isInput; else emailInput">
               <a class="link-white text-nowrap" [ngClass]="{ 'greyish-text' : section.title == 'Download App' }" [innerHTML]="item.text"></a>

@@ -141,15 +141,13 @@ textarea:not([rows]) {
     scroll-margin-block: 5ex;
 }
 
-// /* App root should take full height and use flex layout */
-// app-root {
-//   display: flex;
-//   flex-direction: column;
-//   min-height: 100vh;
-// }
+// Main & Home Layout Header, Footer setup.
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
-// /* This will push the footer to the bottom when content is small */
-// router-outlet {
-//   flex: 1;
-//   display: block;
-// }
+.content {
+  flex: 1;
+}

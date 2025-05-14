@@ -3,10 +3,3 @@ $font-family: "Poppins", sans-serif;
 button {
   font-family: $font-family !important;
 }
-
-.glass-dropdown {
-  background: rgba( 255, 255, 255, 0.35 ) !important;
-  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 ) !important;
-  backdrop-filter: blur( 9px ) !important;
-  -webkit-backdrop-filter: blur( 9px ) !important;
-}

@@ -4,16 +4,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from './@shared/shared.module';
-import { HomeLayoutComponent } from './pages/home-layout/home-layout.component';
 import { MainLayoutComponent } from './pages/main-layout/main-layout.component';
 import { AboutComponent } from './pages/about/about.component';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeLayoutComponent,
     MainLayoutComponent,
-    AboutComponent
+    AboutComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +21,9 @@ import { AboutComponent } from './pages/about/about.component';
     NgbModule,
     SharedModule
   ],
-  providers: [],
+  providers: [
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

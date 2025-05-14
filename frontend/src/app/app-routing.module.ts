@@ -1,26 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeLayoutComponent } from './pages/home-layout/home-layout.component';
 import { MainLayoutComponent } from './pages/main-layout/main-layout.component';
 import { AboutComponent } from './pages/about/about.component';
+import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeLayoutComponent,
-    children: [
-      // { path: '', component: HomeComponent }
-    ]
-  },
-  {
-    path: '',
     component: MainLayoutComponent,
     children: [
-      { path: 'about', component: AboutComponent },
-      // add more inner pages here
+      { path: '', component: HomeComponent },
+      { path: 'about', component: AboutComponent }
     ]
   },
-  { path: '**', redirectTo: '', pathMatch: 'full' } // fallback
+  { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
 @NgModule({
