@@ -12,14 +12,15 @@ import { HomeComponent } from './pages/home/home.component';
   declarations: [
     AppComponent,
     MainLayoutComponent,
-    AboutComponent,
-    HomeComponent
+    HomeComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule,
-    SharedModule
+    SharedModule,
+    // Plugins
+    NgbModule
   ],
   providers: [
 
