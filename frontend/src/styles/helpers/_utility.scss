@@ -103,6 +103,13 @@ $fontweight: (
   align-self: stretch;
 }
 
+// Normal Flex
+.vflex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 // Pointer
 .pointer {
   cursor: pointer;
@@ -122,4 +129,91 @@ $fontweight: (
 
 .border-right {
   border-right: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
+}
+
+.carousel-inner, // Carousel
+.carousel-item,
+.carousel,
+.carousel img {
+  height: 300px;
+  object-fit: cover;
+
+  @media (max-width: 768px) {
+    height: 200px;
+    object-fit: contain;
+  }
+
+  @media (max-width: 480px) {
+    height: 150px;
+    object-fit: contain;
+  }
+}
+
+.solid-red {
+  background-color: $other-2;
+  border-radius: 4px;
+
+  &--vertical {
+    width: 15px;
+    height: 30px;
+  }
+
+  &--horizontal {
+    width: 30px;
+    height: 15px;
+  }
+}
+
+// Flash sale timer
+.timeout {
+  margin-left: 70px;
+  width: 100%;
+  gap: 10px;
+
+  .duration {
+    margin-left: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+  }
+  .colon{
+    color: $other-2;
+  }
+
+  @media screen and (max-width : 768px){
+    margin-left: 5px;
+  }
+}
+
+// Navigation for products
+.navigation_arrow {
+  border-radius: 50%;
+  background-color: $second-1;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 100;
+  cursor: pointer;
+
+  &:first-child {
+    margin-right: 10px;
+  }
+}
+
+.scrollToTop {
+  float: right;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.scrollable-div {
+  gap: 1rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }

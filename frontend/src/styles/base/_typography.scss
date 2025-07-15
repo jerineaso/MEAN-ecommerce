@@ -7,6 +7,10 @@ $display: 4;
   font-weight: $fw;
 }
 
+span {
+  font-family: $font-family;
+}
+
 h1, h2, h3, h4, p {
   margin-block-end: 0;
 }

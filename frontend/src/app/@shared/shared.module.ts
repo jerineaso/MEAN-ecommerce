@@ -4,11 +4,13 @@ import { FooterComponent } from './components/layout/footer/footer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './components/layout/header/header.component';
 import { RouterModule } from '@angular/router';
+import { ProductListingComponent } from './components/product-listing/product-listing.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ProductListingComponent
   ],
   imports: [
     CommonModule,
@@ -17,7 +19,8 @@ import { RouterModule } from '@angular/router';
   ],
   exports: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ProductListingComponent
   ],
   providers: [
   ]
