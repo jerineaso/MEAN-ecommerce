@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-product-listing',
@@ -13,6 +13,14 @@ export class ProductListingComponent implements OnInit {
   minutes    : string = '00';
   seconds    : string = '00';
   intervalId : any
+
+  // Inputs
+  @Input() title      : string  = '';
+  @Input() subTitle  !: string;
+  @Input() isTimer    : boolean = false;
+  @Input() isNavigate : boolean = false;
+  @Input() isBtn      : boolean = false;
+  @Input() btnContent : string  = '';
 
   constructor() { }
 
@@ -65,5 +73,20 @@ export class ProductListingComponent implements OnInit {
     if (this.intervalId) {
       clearInterval(this.intervalId);
     }
+  }
+
+  // Add to Wishlist
+  addToWishList(){
+
+  }
+
+  // Detailed View
+  productDetailedView(){
+
+  }
+
+  // Delete Product
+  deleteProduct(){
+
   }
 }

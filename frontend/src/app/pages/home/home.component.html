@@ -46,7 +46,7 @@
       </div>
     </div>
   </div>
-  <app-product-listing></app-product-listing>
+  <app-product-listing [title]="'Today\'s'" [subTitle]="'Flash sales'" [isTimer]="true" [isNavigate]="true"></app-product-listing>
   <hr>
   <section id="categories">
     <div class="d-flex align-items-center" style="margin-top: 70px;">
@@ -58,12 +58,12 @@
         <h2 class="fs-20 fw-600 text-nowrap">Browse by category</h2>
       </div>
       <div class="navigation d-flex d-none d-md-flex">
-        <div class="navigation_arrow" (click)="navigate('toLeft')">
+        <button class="navigation_arrow" (click)="navigate('toLeft')">
           <i class="icon-arrow-left2"></i>
-        </div>
-        <div class="navigation_arrow" (click)="navigate('toRight')">
+        </button>
+        <button class="navigation_arrow" (click)="navigate('toRight')">
           <i class="icon-arrow-right2"></i>
-        </div>
+        </button>
       </div>
     </div>
     <div #scrollable_div class="scrollable-div d-flex overflow-auto py-3">
@@ -100,7 +100,7 @@
     </div>
   </section>
   <hr>
-  <app-product-listing></app-product-listing>
+  <app-product-listing [title]="'Our products'" [subTitle]="'Explore our products'" [isTimer]="false" [isNavigate]="true"></app-product-listing>
 </div>
 
 <div class="scrollToTop navigation_arrow" (click)="scrollToTop()">

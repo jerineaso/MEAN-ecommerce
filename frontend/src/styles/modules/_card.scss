@@ -11,7 +11,8 @@
     position: relative;
     transition: all .3s ease-in;
 
-    &::after {
+    &.card_cart {
+      &::after {
       content : 'Add to cart';
       position: absolute;
       bottom: 0;
@@ -33,6 +34,7 @@
     &:hover::after {
       opacity: 1;
       transform: translateY(0);
+    }
     }
 
     img {
@@ -92,4 +94,10 @@
       color: $second-4;
     }
   }
+}
+
+.card-highlight {
+  width: 100%;
+  border: 1px solid $second-1;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }

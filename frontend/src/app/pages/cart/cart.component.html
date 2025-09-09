@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row my-2">
+    <div class="col-12 card-highlight d-flex align-items-center justify-content-between p-3">
+      <p class="mb-0 fs-12">Product</p>
+      <p class="mb-0 fs-12">Price</p>
+      <p class="mb-0 fs-12">Quantity</p>
+      <p class="mb-0 fs-12">Sub total</p>
+    </div>
+    <div class="col-12 card-highlight d-flex align-items-center justify-content-between p-2 mt-4">
+      <div class="product_base">
+        <img src="" alt="">
+        <span class="fs-12">Product</span>
+      </div>
+      <p class="mb-0 fs-12">$500</p>
+      <div class="quantity">
+        <input type="number" id="quantity" name="quantity" min="1" max="5" class="form-control" value="0" (change)="calcSubTotal()">
+      </div>
+      <p class="mb-0 fs-12">$500</p>
+    </div>
+    <div class="col-12 d-flex justify-content-between mt-4">
+      <div>
+        <button class="btn btn-primary-2 fs-14">Return to shop</button>
+      </div>
+      <div>
+        <button class="btn btn-primary-2 fs-14">Update cart</button>
+      </div>
+    </div>
+  </div>
+  <div class="row my-4 justify-content-between gap-2">
+    <div class="col-md-5 d-flex gap-2 justify-content-center">
+      <div>
+        <input type="text" class="form-control form-control-normal" id="name" placeholder="Apply coupon">
+      </div>
+      <div>
+        <button class="btn btn-primary fs-14">Apply coupon</button>
+      </div>
+    </div>
+    <div class="col-md-5 border-1">
+      <p class="fs-16 fw-600">Cart total</p>
+      <div class="d-flex justify-content-between">
+        <span>Subtotal: </span>
+        <span>$1450</span>
+      </div>
+      <hr>
+      <div class="d-flex justify-content-between">
+        <span>Shipping: </span>
+        <span>$1450</span>
+      </div>
+      <hr>
+      <div class="d-flex justify-content-between">
+        <span>Total: </span>
+        <span>$1450</span>
+      </div>
+      <button class="btn btn-primary fs-14 mt-2">Proceed to checkout</button>
+    </div>
+  </div>
+</div>

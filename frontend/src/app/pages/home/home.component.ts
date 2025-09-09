@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +10,13 @@ export class HomeComponent implements OnInit {
 
   @ViewChild('scrollable_div') elementView !: ElementRef;
 
-  constructor() { }
+  constructor(
+    private titleService: Title
+  ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.titleService.setTitle('Home | Exclusive');
+  }
 
   // Navigation
   navigate(way : string){

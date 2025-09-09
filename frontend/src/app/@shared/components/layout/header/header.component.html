@@ -34,7 +34,7 @@
           <li class="nav-item ml-lg-15" data-bs-dismiss="offcanvas"><a class="nav-link fs-14" routerLinkActive="active" [routerLink]="'/'" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}"  aria-current="page">Home</a></li>
           <li class="nav-item" data-bs-dismiss="offcanvas"><a class="nav-link fs-14" routerLinkActive="active" [routerLink]="'/about'" aria-current="page">About</a></li>
           <li class="nav-item" data-bs-dismiss="offcanvas"><a class="nav-link fs-14" routerLinkActive="active" [routerLink]="'/contact'" aria-current="page">Contact</a></li>
-          <li class="nav-item" data-bs-dismiss="offcanvas"><a class="nav-link fs-14" routerLinkActive="active" [routerLink]="'/signup'" aria-current="page">Sign up</a></li>
+          <li class="nav-item" data-bs-dismiss="offcanvas"><a class="nav-link fs-14" routerLinkActive="active" [routerLink]="'/login'" aria-current="page">Login</a></li>
         </ul>
         <div class="d-flex gap-3 align-items-baseline justify-content-center">
           <div class="form-wrapper d-none d-lg-block">
@@ -43,10 +43,10 @@
               <i class="icon-search"></i>
             </span>
           </div>
-          <span class="form-control-icon pointer d-none d-lg-block">
+          <span class="form-control-icon pointer d-none d-lg-block" (click)="navigateTo('wishlist')">
             <i class="icon-heart icon-border"></i>
           </span>
-          <span class="form-control-icon pointer">
+          <span class="form-control-icon pointer" (click)="navigateTo('cart')">
             <i class="icon-cart icon-border"></i>
           </span>
         </div>

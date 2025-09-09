@@ -95,6 +95,17 @@ $fontweight: (
   }
 }
 
+// Margin
+.my-below-md-2 {
+  margin-top: .5rem !important;
+  margin-bottom: .5rem !important;
+
+  @media (min-width: 992px) {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+}
+
 // Flex Column
 .vstack {
   display: flex;
@@ -138,14 +149,27 @@ $fontweight: (
   height: 300px;
   object-fit: cover;
 
+  &-height {
+    height: 300px;
+    object-fit: cover;
+  }
+
   @media (max-width: 768px) {
     height: 200px;
     object-fit: contain;
+      &-height {
+      height: auto !important;
+      object-fit: contain;
+    }
   }
 
   @media (max-width: 480px) {
     height: 150px;
     object-fit: contain;
+    &-height {
+      height: auto !important;
+      object-fit: contain;
+    }
   }
 }
 
@@ -200,6 +224,10 @@ $fontweight: (
   &:first-child {
     margin-right: 10px;
   }
+
+  &:disabled {
+    background-color: $btn-dsbld;
+  }
 }
 
 .scrollToTop {
@@ -216,4 +244,77 @@ $fontweight: (
   &::-webkit-scrollbar {
     display: none;
   }
+}
+
+// Page Headers
+.page-head {
+  font-size: 1.9rem;
+  font-weight: 600;
+
+  @media screen and (max-width : 768px){
+    font-size: 1.4rem;
+  }
+}
+
+// About
+.round_icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #111;
+  border: 6px solid $second-1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.small_round_icon {
+  @extend .round_icon;
+  width: 30px;
+  height: 30px;
+  background-color: $second-3;
+  border: none;
+}
+
+.round_icon i {
+  color: #fff;
+  font-size: 24px;
+}
+
+.hover-red {
+  &:hover {
+    background-color: $second-3;
+    color: #fff !important;
+  }
+  &:hover {
+    .round_icon {
+      background-color: #fff;
+      border: 6px solid lightgrey;
+
+      i {
+        color: #111;
+      }
+    }
+  }
+}
+
+// Carousal
+.carousel-paginate{
+  width: 7px !important;
+  height: 7px !important;
+  background-color: $second-4 !important;
+  border-radius: 50% !important;
+  border: 3px solid $second-4 !important;
+}
+
+.carousel-paginate.active {
+  background-color: $second-3 !important;
+  padding: 2px;
+}
+
+// Required
+.required::after {
+  content: " *";
+  color: red;
+  margin-left: 3px;
 }
