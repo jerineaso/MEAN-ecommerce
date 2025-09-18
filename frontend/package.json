@@ -22,6 +22,7 @@
     "@ngx-translate/core": "^13.0.0",
     "@popperjs/core": "^2.10.1",
     "bootstrap": "^5.3.3",
+    "ngx-countup": "^13.2.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
