@@ -1,4 +1,6 @@
 const userModel = require("../models/user.model");
+const userAddModel = require("../models/user-address.model");
+
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -44,9 +46,37 @@ const loginUser = async (req, res, next) => {
     }catch (error) {
         next(error);
     }
- }
+}
+
+const profileUser = async (req, res, next) => {
+    try {
+        const userId = req.user.user_id;
+        const user = await userModel.findById(userId).select('-password');
+        if(!user){
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+        return res.status(200).json({ success: true, message: "User profile fetched successfully", data: user });
+    }catch (error) {
+        next(error);
+    }   
+}
+
+const updateUser = async (req, res, next) => {
+    try {
+        const userId = req.user.user_id;        
+        const updatedUser = await userAddModel.findByIdAndUpdate(userId, req.body, { new: true })
+        if(!updatedUser){
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+        return res.status(200).json({ success: true, message: "User address updated successfully", data: updatedUser });
+    }catch (error) {
+        next(error);
+    }
+}
 
 module.exports = {
     createUser,
-    loginUser
+    loginUser,
+    profileUser,
+    updateUser
 }

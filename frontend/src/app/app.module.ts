@@ -7,6 +7,7 @@ import { SharedModule } from './@shared/shared.module';
 import { MainLayoutComponent } from './pages/main-layout/main-layout.component';
 import { HomeComponent } from './pages/home/home.component';
 import { FormsModule } from "@angular/forms";
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { FormsModule } from "@angular/forms";
     BrowserModule,
     AppRoutingModule,
     SharedModule,
+    HttpClientModule,
     // Plugins
     NgbModule,
     FormsModule

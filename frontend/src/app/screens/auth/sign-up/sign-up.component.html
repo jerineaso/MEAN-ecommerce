@@ -6,21 +6,33 @@
     <div class="col-md-5">
       <h2 class="page-head">Create an account</h2>
       <p class="fs-14">Enter your details below</p>
-      <form autocomplete="off">
+      <form autocomplete="off" [formGroup]="signUpForm">
         <div class="mb-3">
           <label for="name" class="form-label">Name</label>
-          <input type="text" class="form-control form-control-normal" id="name">
+          <input type="text" class="form-control form-control-normal" id="name" formControlName="name" [ngClass]="{ 'is-invalid': signUpForm.get('name')?.invalid && (signUpForm.get('name')?.touched || signUpForm.get('name')?.dirty) && signUpForm.get('name')?.errors }">
+          <div class="invalid-feedback" *ngIf="signUpForm.get('name')?.errors && (signUpForm.get('name')?.touched || signUpForm.get('name')?.dirty)">
+            <span class="fs-12" *ngIf="signUpForm.get('name')?.errors?.['required']">Name is required.</span>
+            <span class="fs-12" *ngIf="signUpForm.get('name')?.errors?.['minlength']">Name must be at least 3 characters long.</span>
+          </div>
         </div>
         <div class="mb-3">
           <label for="email_address" class="form-label">Email address</label>
-          <input type="email" class="form-control form-control-normal" id="email_address" aria-describedby="emailHelp">
-          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+          <input type="email" class="form-control form-control-normal" id="email_address" formControlName="email" [ngClass]="{ 'is-invalid': signUpForm.get('email')?.invalid && (signUpForm.get('email')?.touched || signUpForm.get('email')?.dirty) && signUpForm.get('email')?.errors }">
+          <div id="emailHelp" class="form-text" *ngIf="signUpForm.get('email')?.valid">We'll never share your email with anyone else.</div>
+          <div class="invalid-feedback" *ngIf="signUpForm.get('email')?.errors && (signUpForm.get('email')?.touched || signUpForm.get('email')?.dirty)">
+            <span class="fs-12" *ngIf="signUpForm.get('email')?.errors?.['required']">Email is required.</span>
+            <span class="fs-12" *ngIf="signUpForm.get('email')?.errors?.['email']">Please enter a valid email address.</span>
+          </div>
         </div>
         <div class="mb-3">
           <label for="pass" class="form-label">Password</label>
-          <input type="password" class="form-control form-control-normal" id="pass">
+          <input type="password" class="form-control form-control-normal" id="pass" formControlName="password" [ngClass]="{ 'is-invalid': signUpForm.get('password')?.invalid && (signUpForm.get('password')?.touched || signUpForm.get('password')?.dirty) && signUpForm.get('password')?.errors }">
+          <div class="invalid-feedback" *ngIf="signUpForm.get('password')?.errors && (signUpForm.get('password')?.touched || signUpForm.get('password')?.dirty)">
+            <span class="fs-12" *ngIf="signUpForm.get('password')?.errors?.['required']">Password is required.</span>
+            <span class="fs-12" *ngIf="signUpForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters long.</span>
+          </div>
         </div>
-        <button type="submit" class="btn btn-primary">Create an account</button>
+        <button type="submit" class="btn btn-primary" [disabled]="signUpForm.invalid || signUpBtnSubmitted" (click)="signUpSetup()">Create an account</button>
       </form>
     </div>
   </div>
