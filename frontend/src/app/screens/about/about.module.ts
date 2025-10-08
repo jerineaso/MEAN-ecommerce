@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { AboutRoutingModule } from './about-routing.module';
 import { AboutComponent } from './about.component';
 import { CountUpModule } from 'ngx-countup';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { NgbAccordionModule } from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
   declarations: [
@@ -11,7 +13,9 @@ import { CountUpModule } from 'ngx-countup';
   imports: [
     CommonModule,
     AboutRoutingModule,
-    CountUpModule
-  ]
+    CountUpModule,
+    NgxSkeletonLoaderModule,
+    NgbAccordionModule
+]
 })
 export class AboutModule { }

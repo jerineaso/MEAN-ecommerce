@@ -9,50 +9,79 @@
     </div>
   </div>
   <div class="row my-5 gap-2 flex-wrap">
-    <div class="col d-flex align-items-center justify-content-center">
-      <div class="card pointer hover-red" style="height: 170px;">
-        <div class="card-body d-flex align-items-center justify-content-center flex-column">
-          <div class="round_icon">
-            <i class="icon-shop fs-40"></i>
+    <ng-container *ngIf="salesLoader; else cards">
+      <div class="py-3 d-flex align-items-center justify-content-center w-100 flex-wrap">
+        <div class="card border-0" style="height: 170px;">
+          <div class="card-body">
+            <ngx-skeleton-loader count="1" appearance="line" [theme]="{ width: '100%', height: '100%' }"></ngx-skeleton-loader>
           </div>
-          <span class="fs-14 mt-3 fw-600 mb-0" [countUp]="4">0</span><span>K</span>
-          <p class="fs-12 mb-0">Sellers active on our site</p>
+        </div>
+        <div class="card border-0" style="height: 170px;">
+          <div class="card-body">
+            <ngx-skeleton-loader count="1" appearance="line" [theme]="{ width: '100%', height: '100%' }"></ngx-skeleton-loader>
+          </div>
+        </div>
+        <div class="card border-0" style="height: 170px;">
+          <div class="card-body">
+            <ngx-skeleton-loader count="1" appearance="line" [theme]="{ width: '100%', height: '100%' }"></ngx-skeleton-loader>
+          </div>
+        </div>
+        <div class="card border-0" style="height: 170px;">
+          <div class="card-body">
+            <ngx-skeleton-loader count="1" appearance="line" [theme]="{ width: '100%', height: '100%' }"></ngx-skeleton-loader>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col d-flex align-items-center justify-content-center">
-      <div class="card pointer hover-red" style="height: 170px;">
-        <div class="card-body d-flex align-items-center justify-content-center flex-column">
-          <div class="round_icon">
-            <i class="icon-coin-dollar fs-40"></i>
+    </ng-container>
+    <ng-template #cards>
+      <div class="col d-flex align-items-center justify-content-center">
+        <div class="card pointer hover-red" style="height: 170px;">
+          <div class="card-body d-flex align-items-center justify-content-center flex-column">
+            <div class="round_icon">
+              <i class="icon-shop fs-40"></i>
+            </div>
+            <span class="d-inline-flex align-items-baseline">
+              <span class="fs-14 mt-3 fw-600 mb-0" [countUp]="4">0</span>
+              <span class="fs-14 mt-3 fw-600 mb-0">K</span>
+            </span>
+            <p class="fs-12 mb-0">Sellers active on our site</p>
           </div>
-          <p class="fs-14 mt-3 fw-600 mb-0">33K</p>
-          <p class="fs-12 mb-0">Monthly product sales</p>
         </div>
       </div>
-    </div>
-    <div class="col d-flex align-items-center justify-content-center">
-      <div class="card pointer hover-red" style="height: 170px;">
-        <div class="card-body d-flex align-items-center justify-content-center flex-column">
-          <div class="round_icon">
-            <i class="icon-bag fs-40"></i>
+      <div class="col d-flex align-items-center justify-content-center">
+        <div class="card pointer hover-red" style="height: 170px;">
+          <div class="card-body d-flex align-items-center justify-content-center flex-column">
+            <div class="round_icon">
+              <i class="icon-coin-dollar fs-40"></i>
+            </div>
+            <p class="fs-14 mt-3 fw-600 mb-0">33K</p>
+            <p class="fs-12 mb-0">Monthly product sales</p>
           </div>
-          <p class="fs-14 mt-3 fw-600 mb-0">45.5K</p>
-          <p class="fs-12 mb-0">Customer active on our site</p>
         </div>
       </div>
-    </div>
-    <div class="col d-flex align-items-center justify-content-center">
-      <div class="card pointer hover-red" style="height: 170px;">
-        <div class="card-body d-flex align-items-center justify-content-center flex-column">
-          <div class="round_icon">
-            <i class="icon-big-bag fs-40"></i>
+      <div class="col d-flex align-items-center justify-content-center">
+        <div class="card pointer hover-red" style="height: 170px;">
+          <div class="card-body d-flex align-items-center justify-content-center flex-column">
+            <div class="round_icon">
+              <i class="icon-bag fs-40"></i>
+            </div>
+            <p class="fs-14 mt-3 fw-600 mb-0">45.5K</p>
+            <p class="fs-12 mb-0">Customer active on our site</p>
           </div>
-          <p class="fs-14 mt-3 fw-600 mb-0">25K</p>
-          <p class="fs-12 mb-0">Annual gross sale on our site</p>
         </div>
       </div>
-    </div>
+      <div class="col d-flex align-items-center justify-content-center">
+        <div class="card pointer hover-red" style="height: 170px;">
+          <div class="card-body d-flex align-items-center justify-content-center flex-column">
+            <div class="round_icon">
+              <i class="icon-big-bag fs-40"></i>
+            </div>
+            <p class="fs-14 mt-3 fw-600 mb-0">25K</p>
+            <p class="fs-12 mb-0">Annual gross sale on our site</p>
+          </div>
+        </div>
+      </div>
+    </ng-template>
   </div>
   <div class="row my-5">
     <div class="col-12">

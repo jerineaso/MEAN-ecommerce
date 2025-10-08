@@ -5,6 +5,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './components/layout/header/header.component';
 import { RouterModule } from '@angular/router';
 import { ProductListingComponent } from './components/product-listing/product-listing.component';
+import { NgxSkeletonLoaderModule } from "ngx-skeleton-loader";
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ProductListingComponent } from './components/product-listing/product-li
   imports: [
     CommonModule,
     NgbModule,
-    RouterModule
+    RouterModule,
+    NgxSkeletonLoaderModule
   ],
   exports: [
     HeaderComponent,

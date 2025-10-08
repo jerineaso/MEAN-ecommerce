@@ -14,9 +14,9 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Password is required']
     },
-    token: {
-        type: String
-    }
+    token: { type: String },
+    isSeller: { type: Boolean, default: false },
+    createdAt: { type: Date, default: Date.now }
 });
 
 module.exports = mongoose.model('User', userSchema);

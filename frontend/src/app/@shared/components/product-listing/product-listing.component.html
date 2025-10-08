@@ -29,10 +29,10 @@
       </div>
     </div>
     <div class="navigation d-flex d-none d-md-flex" *ngIf="isNavigate">
-      <button class="navigation_arrow" (click)="navigate('toLeft')">
+      <button class="navigation_arrow" (click)="navigate('toLeft')" [disabled]="isLoading">
         <i class="icon-arrow-left2"></i>
       </button>
-      <button class="navigation_arrow" (click)="navigate('toRight')">
+      <button class="navigation_arrow" (click)="navigate('toRight')" [disabled]="isLoading">
         <i class="icon-arrow-right2"></i>
       </button>
     </div>
@@ -40,172 +40,201 @@
       <button class="btn btn-primary-2 fs-14">{{btnContent}}</button>
     </div>
   </div>
-  <div #scrollable_div class="scrollable-div d-flex overflow-auto py-3">
-    <div class="card border-0">
-      <div class="card_img_container card_cart">
-        <div class="card_prdt_discount_percentage solid-red solid-red--horizontal">
-          <span class="fs-10">-40%</span>
+  <ng-container *ngIf="isLoading; else cards">
+    <div class="py-3 d-flex align-items-center justify-content-center w-100 flex-wrap">
+      <div class="card border-0" style="height: 170px;">
+        <div class="card-body">
+          <ngx-skeleton-loader count="1" appearance="line" [theme]="{ width: '100%', height: '100%' }"></ngx-skeleton-loader>
         </div>
-        <img src="https://images.unsplash.com/photo-1530631673369-bc20fdb32288?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="prdt_image">
-        <div class="card_prdt_wishlist_view">
-          <ng-container *ngIf="!isBtn">
-            <div class="white_rounded_bg mb-2" (click)="addToWishList()">
+      </div>
+      <div class="card border-0" style="height: 170px;">
+        <div class="card-body">
+          <ngx-skeleton-loader count="1" appearance="line" [theme]="{ width: '100%', height: '100%' }"></ngx-skeleton-loader>
+        </div>
+      </div>
+      <div class="card border-0" style="height: 170px;">
+        <div class="card-body">
+          <ngx-skeleton-loader count="1" appearance="line" [theme]="{ width: '100%', height: '100%' }"></ngx-skeleton-loader>
+        </div>
+      </div>
+      <div class="card border-0" style="height: 170px;">
+        <div class="card-body">
+          <ngx-skeleton-loader count="1" appearance="line" [theme]="{ width: '100%', height: '100%' }"></ngx-skeleton-loader>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #cards>
+    <div #scrollable_div class="scrollable-div d-flex overflow-auto py-3">
+      <div class="card border-0">
+        <div class="card_img_container card_cart">
+          <div class="card_prdt_discount_percentage solid-red solid-red--horizontal">
+            <span class="fs-10">-40%</span>
+          </div>
+          <img src="https://images.unsplash.com/photo-1530631673369-bc20fdb32288?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="prdt_image">
+          <div class="card_prdt_wishlist_view">
+            <ng-container *ngIf="!isBtn">
+              <div class="white_rounded_bg mb-2" (click)="addToWishList()">
+                <i class="icon-heart1"></i>
+              </div>
+              <div class="white_rounded_bg mb-2" (click)="productDetailedView()">
+                <i class="icon-eye"></i>
+              </div>
+            </ng-container>
+            <div class="white_rounded_bg" (click)="deleteProduct()">
+              <i class="icon-bin2"></i>
+            </div>
+          </div>
+        </div>
+        <div class="card-body p-0">
+          <div class="card-text mt-2">
+            <p class="fs-14 card_prdt_name mb-1 fw-600">Watch</p>
+            <span class="card_prdt_price fs-14 mb-1">$120</span> <span class="card_prdt_discount fs-14">100</span>
+            <p class="card_prdt_rating fs-14" *ngIf="subTitle !== 'Wishlist'">⭐⭐⭐⭐⭐​​ <span class="card_prdt_rate_count">(80)</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="card border-0">
+        <div class="card_img_container card_cart">
+          <div class="card_prdt_discount_percentage solid-red solid-red--horizontal">
+            <span class="fs-10">-40%</span>
+          </div>
+          <img src="https://images.unsplash.com/photo-1530631673369-bc20fdb32288?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="prdt_image">
+          <div class="card_prdt_wishlist_view">
+            <div class="white_rounded_bg mb-2">
               <i class="icon-heart1"></i>
             </div>
-            <div class="white_rounded_bg mb-2" (click)="productDetailedView()">
+            <div class="white_rounded_bg">
               <i class="icon-eye"></i>
             </div>
-          </ng-container>
-          <div class="white_rounded_bg" (click)="deleteProduct()">
-            <i class="icon-bin2"></i>
+          </div>
+        </div>
+        <div class="card-body p-0">
+          <div class="card-text mt-2">
+            <p class="fs-14 card_prdt_name mb-1 fw-600">Watch</p>
+            <span class="card_prdt_price fs-14 mb-1">$120</span> <span class="card_prdt_discount fs-14">100</span>
+            <p class="card_prdt_rating fs-14">⭐⭐⭐⭐⭐​​ <span class="card_prdt_rate_count">(80)</span></p>
           </div>
         </div>
       </div>
-      <div class="card-body p-0">
-        <div class="card-text mt-2">
-          <p class="fs-14 card_prdt_name mb-1 fw-600">Watch</p>
-          <span class="card_prdt_price fs-14 mb-1">$120</span> <span class="card_prdt_discount fs-14">100</span>
-          <p class="card_prdt_rating fs-14" *ngIf="subTitle !== 'Wishlist'">⭐⭐⭐⭐⭐​​ <span class="card_prdt_rate_count">(80)</span></p>
+      <div class="card border-0">
+        <div class="card_img_container card_cart">
+          <div class="card_prdt_discount_percentage solid-red solid-red--horizontal">
+            <span class="fs-10">-40%</span>
+          </div>
+          <img src="https://images.unsplash.com/photo-1530631673369-bc20fdb32288?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="prdt_image">
+          <div class="card_prdt_wishlist_view">
+            <div class="white_rounded_bg mb-2">
+              <i class="icon-heart1"></i>
+            </div>
+            <div class="white_rounded_bg">
+              <i class="icon-eye"></i>
+            </div>
+          </div>
+        </div>
+        <div class="card-body p-0">
+          <div class="card-text mt-2">
+            <p class="fs-14 card_prdt_name mb-1 fw-600">Watch</p>
+            <span class="card_prdt_price fs-14 mb-1">$120</span> <span class="card_prdt_discount fs-14">100</span>
+            <p class="card_prdt_rating fs-14">⭐⭐⭐⭐⭐​​ <span class="card_prdt_rate_count">(80)</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="card border-0">
+        <div class="card_img_container card_cart">
+          <div class="card_prdt_discount_percentage solid-red solid-red--horizontal">
+            <span class="fs-10">-40%</span>
+          </div>
+          <img src="https://images.unsplash.com/photo-1530631673369-bc20fdb32288?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="prdt_image">
+          <div class="card_prdt_wishlist_view">
+            <div class="white_rounded_bg mb-2">
+              <i class="icon-heart1"></i>
+            </div>
+            <div class="white_rounded_bg">
+              <i class="icon-eye"></i>
+            </div>
+          </div>
+        </div>
+        <div class="card-body p-0">
+          <div class="card-text mt-2">
+            <p class="fs-14 card_prdt_name mb-1 fw-600">Watch</p>
+            <span class="card_prdt_price fs-14 mb-1">$120</span> <span class="card_prdt_discount fs-14">100</span>
+            <p class="card_prdt_rating fs-14">⭐⭐⭐⭐⭐​​ <span class="card_prdt_rate_count">(80)</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="card border-0">
+        <div class="card_img_container card_cart">
+          <div class="card_prdt_discount_percentage solid-red solid-red--horizontal">
+            <span class="fs-10">-40%</span>
+          </div>
+          <img src="https://images.unsplash.com/photo-1530631673369-bc20fdb32288?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="prdt_image">
+          <div class="card_prdt_wishlist_view">
+            <div class="white_rounded_bg mb-2">
+              <i class="icon-heart1"></i>
+            </div>
+            <div class="white_rounded_bg">
+              <i class="icon-eye"></i>
+            </div>
+          </div>
+        </div>
+        <div class="card-body p-0">
+          <div class="card-text mt-2">
+            <p class="fs-14 card_prdt_name mb-1 fw-600">Watch</p>
+            <span class="card_prdt_price fs-14 mb-1">$120</span> <span class="card_prdt_discount fs-14">100</span>
+            <p class="card_prdt_rating fs-14">⭐⭐⭐⭐⭐​​ <span class="card_prdt_rate_count">(80)</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="card border-0">
+        <div class="card_img_container card_cart">
+          <div class="card_prdt_discount_percentage solid-red solid-red--horizontal">
+            <span class="fs-10">-40%</span>
+          </div>
+          <img src="https://images.unsplash.com/photo-1530631673369-bc20fdb32288?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="prdt_image">
+          <div class="card_prdt_wishlist_view">
+            <div class="white_rounded_bg mb-2">
+              <i class="icon-heart1"></i>
+            </div>
+            <div class="white_rounded_bg">
+              <i class="icon-eye"></i>
+            </div>
+          </div>
+        </div>
+        <div class="card-body p-0">
+          <div class="card-text mt-2">
+            <p class="fs-14 card_prdt_name mb-1 fw-600">Watch</p>
+            <span class="card_prdt_price fs-14 mb-1">$120</span> <span class="card_prdt_discount fs-14">100</span>
+            <p class="card_prdt_rating fs-14">⭐⭐⭐⭐⭐​​ <span class="card_prdt_rate_count">(80)</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="card border-0">
+        <div class="card_img_container card_cart">
+          <div class="card_prdt_discount_percentage solid-red solid-red--horizontal">
+            <span class="fs-10">-40%</span>
+          </div>
+          <img src="https://images.unsplash.com/photo-1530631673369-bc20fdb32288?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="prdt_image">
+          <div class="card_prdt_wishlist_view">
+            <div class="white_rounded_bg mb-2">
+              <i class="icon-heart1"></i>
+            </div>
+            <div class="white_rounded_bg">
+              <i class="icon-eye"></i>
+            </div>
+          </div>
+        </div>
+        <div class="card-body p-0">
+          <div class="card-text mt-2">
+            <p class="fs-14 card_prdt_name mb-1 fw-600">Watch</p>
+            <span class="card_prdt_price fs-14 mb-1">$120</span> <span class="card_prdt_discount fs-14">100</span>
+            <p class="card_prdt_rating fs-14">⭐⭐⭐⭐⭐​​ <span class="card_prdt_rate_count">(80)</span></p>
+          </div>
         </div>
       </div>
     </div>
-    <div class="card border-0">
-      <div class="card_img_container card_cart">
-        <div class="card_prdt_discount_percentage solid-red solid-red--horizontal">
-          <span class="fs-10">-40%</span>
-        </div>
-        <img src="https://images.unsplash.com/photo-1530631673369-bc20fdb32288?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="prdt_image">
-        <div class="card_prdt_wishlist_view">
-          <div class="white_rounded_bg mb-2">
-            <i class="icon-heart1"></i>
-          </div>
-          <div class="white_rounded_bg">
-            <i class="icon-eye"></i>
-          </div>
-        </div>
-      </div>
-      <div class="card-body p-0">
-        <div class="card-text mt-2">
-          <p class="fs-14 card_prdt_name mb-1 fw-600">Watch</p>
-          <span class="card_prdt_price fs-14 mb-1">$120</span> <span class="card_prdt_discount fs-14">100</span>
-          <p class="card_prdt_rating fs-14">⭐⭐⭐⭐⭐​​ <span class="card_prdt_rate_count">(80)</span></p>
-        </div>
-      </div>
-    </div>
-    <div class="card border-0">
-      <div class="card_img_container card_cart">
-        <div class="card_prdt_discount_percentage solid-red solid-red--horizontal">
-          <span class="fs-10">-40%</span>
-        </div>
-        <img src="https://images.unsplash.com/photo-1530631673369-bc20fdb32288?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="prdt_image">
-        <div class="card_prdt_wishlist_view">
-          <div class="white_rounded_bg mb-2">
-            <i class="icon-heart1"></i>
-          </div>
-          <div class="white_rounded_bg">
-            <i class="icon-eye"></i>
-          </div>
-        </div>
-      </div>
-      <div class="card-body p-0">
-        <div class="card-text mt-2">
-          <p class="fs-14 card_prdt_name mb-1 fw-600">Watch</p>
-          <span class="card_prdt_price fs-14 mb-1">$120</span> <span class="card_prdt_discount fs-14">100</span>
-          <p class="card_prdt_rating fs-14">⭐⭐⭐⭐⭐​​ <span class="card_prdt_rate_count">(80)</span></p>
-        </div>
-      </div>
-    </div><div class="card border-0">
-      <div class="card_img_container card_cart">
-        <div class="card_prdt_discount_percentage solid-red solid-red--horizontal">
-          <span class="fs-10">-40%</span>
-        </div>
-        <img src="https://images.unsplash.com/photo-1530631673369-bc20fdb32288?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="prdt_image">
-        <div class="card_prdt_wishlist_view">
-          <div class="white_rounded_bg mb-2">
-            <i class="icon-heart1"></i>
-          </div>
-          <div class="white_rounded_bg">
-            <i class="icon-eye"></i>
-          </div>
-        </div>
-      </div>
-      <div class="card-body p-0">
-        <div class="card-text mt-2">
-          <p class="fs-14 card_prdt_name mb-1 fw-600">Watch</p>
-          <span class="card_prdt_price fs-14 mb-1">$120</span> <span class="card_prdt_discount fs-14">100</span>
-          <p class="card_prdt_rating fs-14">⭐⭐⭐⭐⭐​​ <span class="card_prdt_rate_count">(80)</span></p>
-        </div>
-      </div>
-    </div>
-    <div class="card border-0">
-      <div class="card_img_container card_cart">
-        <div class="card_prdt_discount_percentage solid-red solid-red--horizontal">
-          <span class="fs-10">-40%</span>
-        </div>
-        <img src="https://images.unsplash.com/photo-1530631673369-bc20fdb32288?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="prdt_image">
-        <div class="card_prdt_wishlist_view">
-          <div class="white_rounded_bg mb-2">
-            <i class="icon-heart1"></i>
-          </div>
-          <div class="white_rounded_bg">
-            <i class="icon-eye"></i>
-          </div>
-        </div>
-      </div>
-      <div class="card-body p-0">
-        <div class="card-text mt-2">
-          <p class="fs-14 card_prdt_name mb-1 fw-600">Watch</p>
-          <span class="card_prdt_price fs-14 mb-1">$120</span> <span class="card_prdt_discount fs-14">100</span>
-          <p class="card_prdt_rating fs-14">⭐⭐⭐⭐⭐​​ <span class="card_prdt_rate_count">(80)</span></p>
-        </div>
-      </div>
-    </div><div class="card border-0">
-      <div class="card_img_container card_cart">
-        <div class="card_prdt_discount_percentage solid-red solid-red--horizontal">
-          <span class="fs-10">-40%</span>
-        </div>
-        <img src="https://images.unsplash.com/photo-1530631673369-bc20fdb32288?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="prdt_image">
-        <div class="card_prdt_wishlist_view">
-          <div class="white_rounded_bg mb-2">
-            <i class="icon-heart1"></i>
-          </div>
-          <div class="white_rounded_bg">
-            <i class="icon-eye"></i>
-          </div>
-        </div>
-      </div>
-      <div class="card-body p-0">
-        <div class="card-text mt-2">
-          <p class="fs-14 card_prdt_name mb-1 fw-600">Watch</p>
-          <span class="card_prdt_price fs-14 mb-1">$120</span> <span class="card_prdt_discount fs-14">100</span>
-          <p class="card_prdt_rating fs-14">⭐⭐⭐⭐⭐​​ <span class="card_prdt_rate_count">(80)</span></p>
-        </div>
-      </div>
-    </div><div class="card border-0">
-      <div class="card_img_container card_cart">
-        <div class="card_prdt_discount_percentage solid-red solid-red--horizontal">
-          <span class="fs-10">-40%</span>
-        </div>
-        <img src="https://images.unsplash.com/photo-1530631673369-bc20fdb32288?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="prdt_image">
-        <div class="card_prdt_wishlist_view">
-          <div class="white_rounded_bg mb-2">
-            <i class="icon-heart1"></i>
-          </div>
-          <div class="white_rounded_bg">
-            <i class="icon-eye"></i>
-          </div>
-        </div>
-      </div>
-      <div class="card-body p-0">
-        <div class="card-text mt-2">
-          <p class="fs-14 card_prdt_name mb-1 fw-600">Watch</p>
-          <span class="card_prdt_price fs-14 mb-1">$120</span> <span class="card_prdt_discount fs-14">100</span>
-          <p class="card_prdt_rating fs-14">⭐⭐⭐⭐⭐​​ <span class="card_prdt_rate_count">(80)</span></p>
-        </div>
-      </div>
-    </div>
-  </div>
+  </ng-template>
   <div class="col-12 my-2 py-2 d-flex justify-content-center" *ngIf="!isBtn">
-    <a class="solid-red p-2 text-white">View Products</a>
+    <a class="solid-red p-2 text-white" [attr.aria-disabled]="isLoading">View Products</a>
   </div>
 </section>

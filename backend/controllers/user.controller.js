@@ -55,6 +55,8 @@ const profileUser = async (req, res, next) => {
         if(!user){
             return res.status(404).json({ success: false, message: "User not found" });
         }
+        const address = await userAddModel.findOne({ userId: userId });
+        user.address = address;
         return res.status(200).json({ success: true, message: "User profile fetched successfully", data: user });
     }catch (error) {
         next(error);

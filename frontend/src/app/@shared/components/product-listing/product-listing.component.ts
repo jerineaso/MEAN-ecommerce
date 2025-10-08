@@ -20,6 +20,7 @@ export class ProductListingComponent implements OnInit {
   @Input() isTimer    : boolean = false;
   @Input() isNavigate : boolean = false;
   @Input() isBtn      : boolean = false;
+  @Input() isLoading  : boolean = false;
   @Input() btnContent : string  = '';
 
   constructor() { }

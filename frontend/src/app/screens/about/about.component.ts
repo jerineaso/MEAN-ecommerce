@@ -10,6 +10,7 @@ export class AboutComponent implements OnInit {
 
   // Initializations
   activeIndex = 0;
+  salesLoader: boolean = true;
 
   constructor(
     private titleService: Title

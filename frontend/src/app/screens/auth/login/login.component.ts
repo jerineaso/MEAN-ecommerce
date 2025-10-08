@@ -44,7 +44,6 @@ export class LoginComponent implements OnInit {
       }
       this.loginBtnSubmitted = false;
     }, (err: any) => {
-      console.log(err);
       this.loginBtnSubmitted = false;
     });
   }

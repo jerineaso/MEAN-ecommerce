@@ -1,52 +1,66 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3 border-right d-none d-md-block">
-      <ul role="list" class="justify-content-center align-items-center flex-grow-1 mt-3">
-        <li class="nav-item mb-3"><a class="nav-link fw-400 fs-14" [routerLink]="'/'">Women's Fashion</a></li>
-        <li class="nav-item mb-3"><a class="nav-link fw-400 fs-14" [routerLink]="'/'">Men's Fashion</a></li>
-        <li class="nav-item mb-3"><a class="nav-link fw-400 fs-14" [routerLink]="'/'">Electronics</a></li>
-        <li class="nav-item mb-3"><a class="nav-link fw-400 fs-14" [routerLink]="'/'">Home & Lifestyle</a></li>
-        <li class="nav-item mb-3"><a class="nav-link fw-400 fs-14" [routerLink]="'/'">Medicine</a></li>
-        <li class="nav-item mb-3"><a class="nav-link fw-400 fs-14" [routerLink]="'/'">Sports & Outdoor</a></li>
-        <li class="nav-item mb-3"><a class="nav-link fw-400 fs-14" [routerLink]="'/'">Baby's & Toys</a></li>
-        <li class="nav-item mb-3"><a class="nav-link fw-400 fs-14" [routerLink]="'/'">Groceries & Pets</a></li>
-        <li class="nav-item"><a class="nav-link fw-400 fs-14" [routerLink]="'/'">Health & Beauty</a></li>
-      </ul>
+      <ng-container *ngIf="carouselLoader;else categoriesBlock">
+        <div class="mt-3">
+          <ngx-skeleton-loader count="1" appearance="line" [theme]="{ width: '100%', height: '300px' }"></ngx-skeleton-loader>
+        </div>
+      </ng-container>
+      <ng-template #categoriesBlock>
+        <ul role="list" class="justify-content-center align-items-center flex-grow-1 mt-3">
+          <li class="nav-item mb-3"><a class="nav-link fw-400 fs-14" [routerLink]="'/'">Women's Fashion</a></li>
+          <li class="nav-item mb-3"><a class="nav-link fw-400 fs-14" [routerLink]="'/'">Men's Fashion</a></li>
+          <li class="nav-item mb-3"><a class="nav-link fw-400 fs-14" [routerLink]="'/'">Electronics</a></li>
+          <li class="nav-item mb-3"><a class="nav-link fw-400 fs-14" [routerLink]="'/'">Home & Lifestyle</a></li>
+          <li class="nav-item mb-3"><a class="nav-link fw-400 fs-14" [routerLink]="'/'">Medicine</a></li>
+          <li class="nav-item mb-3"><a class="nav-link fw-400 fs-14" [routerLink]="'/'">Sports & Outdoor</a></li>
+          <li class="nav-item mb-3"><a class="nav-link fw-400 fs-14" [routerLink]="'/'">Baby's & Toys</a></li>
+          <li class="nav-item mb-3"><a class="nav-link fw-400 fs-14" [routerLink]="'/'">Groceries & Pets</a></li>
+          <li class="nav-item"><a class="nav-link fw-400 fs-14" [routerLink]="'/'">Health & Beauty</a></li>
+        </ul>
+      </ng-template>
     </div>
     <div class="col-md-9">
-      <div id="carouselExampleAutoPlaying" class="carousel slide mt-3" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleAutoPlaying" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleAutoPlaying" data-bs-slide-to="1" aria-label="Slide 2"></button>
-          <button type="button" data-bs-target="#carouselExampleAutoPlaying" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <ng-container *ngIf="carouselLoader;else carouselBlock">
+        <div class="mt-3">
+          <ngx-skeleton-loader count="1" appearance="line" [theme]="{ width: '100%', height: '300px' }"></ngx-skeleton-loader>
         </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active" data-bs-interval="10000">
-            <img src="../../../assets/images/banner/banner-1.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>First slide label</h5>
-              <p>Some representative placeholder content for the first slide.</p>
-            </div>
+      </ng-container>
+      <ng-template #carouselBlock>
+        <div id="carouselExampleAutoPlaying" class="carousel slide mt-3" data-bs-ride="carousel">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleAutoPlaying" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleAutoPlaying" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleAutoPlaying" data-bs-slide-to="2" aria-label="Slide 3"></button>
           </div>
-          <div class="carousel-item" data-bs-interval="2000">
-            <img src="../../../assets/images/banner/banner-1.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>Second slide label</h5>
-              <p>Some representative placeholder content for the second slide.</p>
+          <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="10000">
+              <img src="../../../assets/images/banner/banner-1.jpg" class="d-block w-100" alt="...">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>First slide label</h5>
+                <p>Some representative placeholder content for the first slide.</p>
+              </div>
             </div>
-          </div>
-          <div class="carousel-item">
-            <img src="../../../assets/images/banner/banner-1.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>Third slide label</h5>
-              <p>Some representative placeholder content for the third slide.</p>
+            <div class="carousel-item" data-bs-interval="2000">
+              <img src="../../../assets/images/banner/banner-1.jpg" class="d-block w-100" alt="...">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Second slide label</h5>
+                <p>Some representative placeholder content for the second slide.</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="../../../assets/images/banner/banner-1.jpg" class="d-block w-100" alt="...">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Third slide label</h5>
+                <p>Some representative placeholder content for the third slide.</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </ng-template>
     </div>
   </div>
-  <app-product-listing [title]="'Today\'s'" [subTitle]="'Flash sales'" [isTimer]="true" [isNavigate]="true"></app-product-listing>
+  <app-product-listing [title]="'Today\'s'" [subTitle]="'Flash sales'" [isTimer]="true" [isNavigate]="true" [isLoading]="todaySalesLoader"></app-product-listing>
   <hr>
   <section id="categories">
     <div class="d-flex align-items-center" style="margin-top: 70px;">
@@ -58,49 +72,75 @@
         <h2 class="fs-20 fw-600 text-nowrap">Browse by category</h2>
       </div>
       <div class="navigation d-flex d-none d-md-flex">
-        <button class="navigation_arrow" (click)="navigate('toLeft')">
+        <button class="navigation_arrow" (click)="navigate('toLeft')" [disabled]="topCategoriesLoader">
           <i class="icon-arrow-left2"></i>
         </button>
-        <button class="navigation_arrow" (click)="navigate('toRight')">
+        <button class="navigation_arrow" (click)="navigate('toRight')" [disabled]="topCategoriesLoader">
           <i class="icon-arrow-right2"></i>
         </button>
       </div>
     </div>
-    <div #scrollable_div class="scrollable-div d-flex overflow-auto py-3">
-      <div class="card pointer" style="height: 170px;">
-        <div class="card-body d-flex align-items-center justify-content-center flex-column">
-          <i class="icon-mobile fs-40"></i>
-          <p class="fs-12 mt-3">Mobiles</p>
+    <ng-container *ngIf="topCategoriesLoader; else categoryBlock">
+      <div class="py-3 d-flex align-items-center justify-content-center flex-wrap">
+        <div class="card border-0" style="height: 170px;">
+          <div class="card-body">
+            <ngx-skeleton-loader count="1" appearance="line" [theme]="{ width: '100%', height: '100%' }"></ngx-skeleton-loader>
+          </div>
+        </div>
+        <div class="card border-0" style="height: 170px;">
+          <div class="card-body">
+            <ngx-skeleton-loader count="1" appearance="line" [theme]="{ width: '100%', height: '100%' }"></ngx-skeleton-loader>
+          </div>
+        </div>
+        <div class="card border-0" style="height: 170px;">
+          <div class="card-body">
+            <ngx-skeleton-loader count="1" appearance="line" [theme]="{ width: '100%', height: '100%' }"></ngx-skeleton-loader>
+          </div>
+        </div>
+        <div class="card border-0" style="height: 170px;">
+          <div class="card-body">
+            <ngx-skeleton-loader count="1" appearance="line" [theme]="{ width: '100%', height: '100%' }"></ngx-skeleton-loader>
+          </div>
         </div>
       </div>
-      <div class="card pointer" style="height: 170px;">
-        <div class="card-body d-flex align-items-center justify-content-center flex-column">
-          <i class="icon-laptop fs-40"></i>
-          <p class="fs-12 mt-3">Laptops</p>
+    </ng-container>
+    <ng-template #categoryBlock>
+      <div #scrollable_div class="scrollable-div d-flex overflow-auto py-3">
+        <div class="card pointer" style="height: 170px;">
+          <div class="card-body d-flex align-items-center justify-content-center flex-column">
+            <i class="icon-mobile fs-40"></i>
+            <p class="fs-12 mt-3">Mobiles</p>
+          </div>
+        </div>
+        <div class="card pointer" style="height: 170px;">
+          <div class="card-body d-flex align-items-center justify-content-center flex-column">
+            <i class="icon-laptop fs-40"></i>
+            <p class="fs-12 mt-3">Laptops</p>
+          </div>
+        </div>
+        <div class="card pointer" style="height: 170px;">
+          <div class="card-body d-flex align-items-center justify-content-center flex-column">
+            <i class="icon-watch fs-40"></i>
+            <p class="fs-12 mt-3">Watches</p>
+          </div>
+        </div>
+        <div class="card pointer" style="height: 170px;">
+          <div class="card-body d-flex align-items-center justify-content-center flex-column">
+            <i class="icon-camera1 fs-40"></i>
+            <p class="fs-12 mt-3">Cameras</p>
+          </div>
+        </div>
+        <div class="card pointer" style="height: 170px;">
+          <div class="card-body d-flex align-items-center justify-content-center flex-column">
+            <i class="icon-headphones fs-40"></i>
+            <p class="fs-12 mt-3">Headphones</p>
+          </div>
         </div>
       </div>
-      <div class="card pointer" style="height: 170px;">
-        <div class="card-body d-flex align-items-center justify-content-center flex-column">
-          <i class="icon-watch fs-40"></i>
-          <p class="fs-12 mt-3">Watches</p>
-        </div>
-      </div>
-      <div class="card pointer" style="height: 170px;">
-        <div class="card-body d-flex align-items-center justify-content-center flex-column">
-          <i class="icon-camera1 fs-40"></i>
-          <p class="fs-12 mt-3">Cameras</p>
-        </div>
-      </div>
-      <div class="card pointer" style="height: 170px;">
-        <div class="card-body d-flex align-items-center justify-content-center flex-column">
-          <i class="icon-headphones fs-40"></i>
-          <p class="fs-12 mt-3">Headphones</p>
-        </div>
-      </div>
-    </div>
+    </ng-template>
   </section>
   <hr>
-  <app-product-listing [title]="'Our products'" [subTitle]="'Explore our products'" [isTimer]="false" [isNavigate]="true"></app-product-listing>
+  <app-product-listing [title]="'Our products'" [subTitle]="'Explore our products'" [isTimer]="false" [isNavigate]="true" [isLoading]="topProductsLoader"></app-product-listing>
 </div>
 
 <div class="scrollToTop navigation_arrow" (click)="scrollToTop()">

@@ -44,7 +44,6 @@ export class SignUpComponent implements OnInit {
       }
       this.signUpBtnSubmitted = false;
     }, (err: any) => {
-      console.log(err);
       this.signUpBtnSubmitted = false;
     });
   }

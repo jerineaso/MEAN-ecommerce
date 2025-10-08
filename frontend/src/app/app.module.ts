@@ -8,6 +8,7 @@ import { MainLayoutComponent } from './pages/main-layout/main-layout.component';
 import { HomeComponent } from './pages/home/home.component';
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     // Plugins
     NgbModule,
-    FormsModule
+    FormsModule,
+    NgxSkeletonLoaderModule
 ],
   providers: [
 

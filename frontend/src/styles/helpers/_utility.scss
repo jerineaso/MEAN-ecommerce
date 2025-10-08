@@ -186,6 +186,12 @@ $fontweight: (
     width: 30px;
     height: 15px;
   }
+
+  &:disabled, &[aria-disabled="true"] {
+    background-color: $btn-dsbld !important;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
 }
 
 // Flash sale timer

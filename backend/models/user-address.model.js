@@ -6,13 +6,9 @@ const userAddressSchema = new mongoose.Schema({
         ref: 'User',
         required: [true, 'User ID is required']
     },
-    addressLine1: { 
-        type: String, 
-        required: [true, 'Address Line 1 is required'] 
-    },
-    addressLine2: {
+    address: { 
         type: String,
-        required: [true, 'Address Line 2 is required']
+        required: [true, 'Address is required']
     },
     city: {
         type: String,

@@ -8,6 +8,12 @@ import { Title } from '@angular/platform-browser';
 })
 export class HomeComponent implements OnInit {
 
+  // Initializations
+  carouselLoader      : boolean = true;
+  todaySalesLoader    : boolean = true;
+  topCategoriesLoader : boolean = true;
+  topProductsLoader   : boolean = true;
+
   @ViewChild('scrollable_div') elementView !: ElementRef;
 
   constructor(
@@ -16,6 +22,12 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleService.setTitle('Home | Exclusive');
+    // Today's Sales
+    this.getTodaySales();
+    // Top Categories
+    this.getTopCategories();
+    // Top Products
+    this.getTopProducts();
   }
 
   // Navigation
@@ -42,4 +54,13 @@ export class HomeComponent implements OnInit {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
   }
+
+  // Get Today's Sales
+  getTodaySales(){ }
+
+  // Get Top Categories
+  getTopCategories(){ }
+
+  // Get Top Products
+  getTopProducts(){ }
 }
