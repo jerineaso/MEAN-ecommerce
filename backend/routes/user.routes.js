@@ -5,7 +5,7 @@ const userRoute = express.Router();
 
 userRoute.route('/register').post(createUser);
 userRoute.route('/login').post(loginUser);
-userRoute.route('/profile').get(profileUser);
+userRoute.route('/profile/:id').get(profileUser);
 userRoute.route('/update').put(updateUser);
 userRoute.route('/logout').post(logoutUser);
 userRoute.route('/address').get(getAddress);
