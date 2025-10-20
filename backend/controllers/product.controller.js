@@ -55,10 +55,144 @@ const deleteProduct = async (req, res, next) => {
     }
 }
 
+const getFlashSaleProducts = async (req, res, next) => {
+    try {
+        const flashSaleProducts = await productModel.find({ flashSale: true });
+        return res.status(200).json({ success: true, message: "Flash sale products fetched successfully", data: flashSaleProducts });
+    } catch (error) {
+        next(error);
+    }
+}
+
+const createCartItems = async (req, res, next) => {
+    try {
+        const userId = req.user.user_id;
+        const user = await userModel.findById(userId);
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+        const cartItems = req.body.cartItems;
+        if (!Array.isArray(cartItems) || cartItems.length === 0) {
+            return res.status(400).json({ success: false, message: "cartItems must be a non-empty array" });
+        }
+        const products = await productModel.find({ productId: { $in: cartItems } });
+        if (products.length !== cartItems.length) {
+            return res.status(404).json({ success: false, message: "Some products not found" });
+        }
+        await productModel.updateMany(
+            { productId: { $in: cartItems } },
+            { $set: { isAddedInCart: true } }
+        );
+        const updatedProducts = await productModel.find({ productId: { $in: cartItems } });
+        return res.status(200).json({ success: true, message: "Products added to cart successfully", data: updatedProducts });
+    } catch (error) {
+        next(error);
+    }   
+}
+
+const getCartProducts = async (req, res, next) => {
+    try {
+        const userId = req.user.user_id;
+        const user = await userModel.findById(userId);
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+        const cartProducts = await productModel.find({ isAddedInCart: true });
+        return res.status(200).json({ success: true, message: "Cart products fetched successfully", data: cartProducts });
+    } catch (error) {
+        next(error);
+    }
+};
+
+const updateCartItems = async (req, res, next) => {
+    try {
+        const userId = req.user.user_id;
+        const user = await userModel.findById(userId);
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+        const cartItems = req.body.cartItems;
+        if (!Array.isArray(cartItems) || cartItems.length === 0) {
+            return res.status(400).json({ success: false, message: "cartItems must be a non-empty array" });
+        }
+        const products = await productModel.find({ productId: { $in: cartItems } });
+        if (products.length !== cartItems.length) {
+            return res.status(404).json({ success: false, message: "Some products not found" });
+        }
+        for (const item of cartItems) {
+            await productModel.updateOne(
+                { productId: item.productId },
+                { $set: { isAddedInCart: true, userQuantity: item.quantity } }
+            );
+        }
+        const updatedProducts = await productModel.find({ productId: { $in: productIds } });
+        return res.status(200).json({ success: true, message: "Products added to cart successfully", data: updatedProducts });
+    } catch (error) {
+        next(error);
+    }
+};
+
+const createWishListItems = async (req, res, next) => {
+    try {
+        const userId = req.user.user_id;
+        const user = await userModel.findById(userId);
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+        const wishListItems = req.body.wishListItems;
+        if (!Array.isArray(wishListItems) || wishListItems.length === 0) {
+            return res.status(400).json({ success: false, message: "wishListItems must be a non-empty array" });
+        }
+        const products = await productModel.find({ productId: { $in: wishListItems } });
+        if (products.length !== wishListItems.length) {
+            return res.status(404).json({ success: false, message: "Some products not found" });
+        }
+        await productModel.updateMany(
+            { productId: { $in: wishListItems } },
+            { $set: { isWishlisted: true } }
+        );
+        const updatedProducts = await productModel.find({ productId: { $in: wishListItems } });
+        return res.status(200).json({ success: true, message: "Products added to wishlist successfully", data: updatedProducts });
+    } catch (error) {
+        next(error);
+    }
+};
+
+const getWishListProducts = async (req, res, next) => {
+    try {
+        const userId = req.user.user_id;
+        const user = await userModel.findById(userId);
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+        const wishListProducts = await productModel.find({ isWishlisted: true });
+        return res.status(200).json({ success: true, message: "Wishlist products fetched successfully", data: wishListProducts });
+    } catch (error) {
+        next(error);
+    }
+};
+
+const getCountWishListCartItems = async (req, res, next) => {
+    try {
+        const wishListCount = await productModel.countDocuments({ isWishlisted: true });
+        const cartCount = await productModel.countDocuments({ isAddedInCart: true });
+        return res.status(200).json({ success: true, message: "Counts fetched successfully", data: { wishListCount, cartCount } });
+    } catch (error) {
+        next(error);
+    }
+};
+
 module.exports = {
     getAllCategories,
     createProduct,
     getProductList,
+    getFlashSaleProducts,
     getProductDetails,
-    deleteProduct
+    deleteProduct,
+    createCartItems,
+    getCartProducts,
+    createWishListItems,
+    getWishListProducts,
+    updateCartItems,
+    getCountWishListCartItems
 }

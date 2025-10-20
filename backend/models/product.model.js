@@ -25,7 +25,10 @@ const productSchema = new mongoose.Schema({
   reviews: { type: Number, min: 0, default: 0 },
   discountPrice: { type: Number, default: 0 },
   isWishlisted: { type: Boolean, default: false },
-  availableQuantity: { type: Number, default: 0 }
+  availableQuantity: { type: Number, default: 0 },
+  isAddedInCart: { type: Boolean, default: false },
+  isPurchased: { type: Boolean, default: false },
+  userQuantity: { type: Number, default: 0 }
 });
 
 module.exports = mongoose.model('Product', productSchema);

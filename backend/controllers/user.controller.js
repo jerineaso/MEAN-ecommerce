@@ -76,9 +76,36 @@ const updateUser = async (req, res, next) => {
     }
 }
 
+const logoutUser = async (req, res, next) => {
+    try {
+        const userId = req.user.user_id;
+        await userModel.findByIdAndUpdate(userId, { token: null });
+        return res.status(200).json({ success: true, message: "Logout successful" });
+    } catch (error) {
+        next(error);
+    }
+}
+
+const getAddress = async (req, res, next) => {
+    try {
+        const userId = req.user.user_id;
+        const user = await userAddModel.findOne({ userId: userId });
+        if(!user){
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+        const address = await userAddModel.findOne({ userId: userId });
+        user.address = address;
+        return res.status(200).json({ success: true, message: "User address fetched successfully", data: user });
+    }catch (error) {
+        next(error);
+    }
+}
+
 module.exports = {
     createUser,
     loginUser,
     profileUser,
-    updateUser
+    updateUser,
+    logoutUser,
+    getAddress
 }
