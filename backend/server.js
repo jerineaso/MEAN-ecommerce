@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors')
 const cookieparser = require("cookie-parser");
+const compression = require('compression')
 const errorHandler = require('./middlewares/errorHandler');
 const { dbConnet, migrate } = require('./config/db');
 const productRoute = require('./routes/product.routes');
@@ -16,6 +17,7 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+app.use(compression());
 app.use(express.json()); // For PUT, POST
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({

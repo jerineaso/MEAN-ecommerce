@@ -56,8 +56,9 @@ const profileUser = async (req, res, next) => {
             return res.status(404).json({ success: false, message: "User not found" });
         }
         const address = await userAddModel.findOne({ userId: userId });
-        user.address = address;
-        return res.status(200).json({ success: true, message: "User profile fetched successfully", data: user });
+        const userObj = user.toObject();
+        userObj.address = address;
+        return res.status(200).json({ success: true, message: "User profile fetched successfully", data: userObj });
     }catch (error) {
         next(error);
     }   
@@ -65,12 +66,22 @@ const profileUser = async (req, res, next) => {
 
 const updateUser = async (req, res, next) => {
     try {
-        const userId = req.user.user_id;        
-        const updatedUser = await userAddModel.findByIdAndUpdate(userId, req.body, { new: true })
-        if(!updatedUser){
+        const userId = req.params.id;
+        const user = await userModel.findById(userId).select('-password');
+        if(!user){
             return res.status(404).json({ success: false, message: "User not found" });
+        }   
+        const updatedUser = await userAddModel.findOneAndUpdate(
+            { userId: userId },
+            req.body,
+            { new: true, upsert: true }
+        );
+        if(!updatedUser){
+            return res.status(404).json({ success: false, message: "Address issue" });
         }
-        return res.status(200).json({ success: true, message: "User address updated successfully", data: updatedUser });
+        const userObj = user.toObject();
+        userObj.address = updatedUser;
+        return res.status(200).json({ success: true, message: "User address updated successfully", data: userObj });
     }catch (error) {
         next(error);
     }
@@ -89,13 +100,14 @@ const logoutUser = async (req, res, next) => {
 const getAddress = async (req, res, next) => {
     try {
         const userId = req.user.user_id;
-        const user = await userAddModel.findOne({ userId: userId });
+        const user = await userModel.findOne({ _id: userId });
         if(!user){
             return res.status(404).json({ success: false, message: "User not found" });
         }
         const address = await userAddModel.findOne({ userId: userId });
-        user.address = address;
-        return res.status(200).json({ success: true, message: "User address fetched successfully", data: user });
+        const userObj = user.toObject();
+        userObj.address = address;
+        return res.status(200).json({ success: true, message: "User address fetched successfully", data: userObj });
     }catch (error) {
         next(error);
     }

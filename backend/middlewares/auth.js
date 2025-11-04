@@ -3,10 +3,12 @@ require('dotenv').config();
 const TOKEN_KEY = process.env.TOKEN_KEY;
 
 const verifyToken = (req, res, next) => {
-    const token = req.headers['authorization'];
-    console.log(TOKEN_KEY);
+    let token = req.headers['authorization'];
     if (!token) {
         return res.status(403).json({ success: false, message: "Token is required" });
+    }
+    if (token.startsWith('Bearer ')) {
+        token = token?.slice(7);
     }
     jwt.verify(token, TOKEN_KEY, (err, decoded) => {
         if (err) {

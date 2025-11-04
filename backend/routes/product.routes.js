@@ -7,14 +7,17 @@ const { createOrder } = require('../controllers/order.controller');
 productRoute.route('/categories').get(getAllCategories);
 productRoute.route('/create-product').post(authMiddleware, createProduct);
 productRoute.route('/products-list').get(getProductList);
-productRoute.route('/products/:id').get(getProductDetails).delete(deleteProduct);
 productRoute.route('/flash-sale-products').get(getFlashSaleProducts);
-productRoute.route('/cart-items').post(authMiddleware, createCartItems);
-productRoute.route('/cart-items').get(authMiddleware, getCartProducts);
-productRoute.route('/wishlist-items').post(authMiddleware, createWishListItems);
-productRoute.route('/wishlist-items').get(authMiddleware, getWishListProducts);
+productRoute.route('/create-cart-items').post(authMiddleware, createCartItems);
+productRoute.route('/get-cart-items').get(authMiddleware, getCartProducts);
+productRoute.route('/create-wishlist-items').post(authMiddleware, createWishListItems);
+productRoute.route('/get-wishlist-items').get(authMiddleware, getWishListProducts);
 productRoute.route('/count-items').get(authMiddleware, getCountWishListCartItems);
 productRoute.route('/update-cart-items').put(authMiddleware, updateCartItems);
 productRoute.route('/create-order').post(authMiddleware, createOrder);
+
+// Use dynamic route at last
+productRoute.route('/:id').get(getProductDetails).delete(authMiddleware, deleteProduct);
+
 
 module.exports = productRoute;

@@ -20,7 +20,7 @@ const productSchema = new mongoose.Schema({
   productId: { type: Number, unique: true },
   flashSale: { type: Boolean, default: false },
   icon: String,
-  images: String,
+  images: { type: Array },
   ratings: { type: Number, min: 0, max: 5, default: 0 },
   reviews: { type: Number, min: 0, default: 0 },
   discountPrice: { type: Number, default: 0 },

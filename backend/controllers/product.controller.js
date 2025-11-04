@@ -1,4 +1,5 @@
 const productModel = require("../models/product.model");
+const userModel = require("../models/user.model");
 
 const getAllCategories = async (req, res, next) => {
     try {
@@ -24,7 +25,7 @@ const createProduct = async (req, res, next) => {
 
 const getProductDetails = async (req, res, next) => {
     try {
-        const product = await productModel.findOne({ productId: req.params.id });
+        const product = await productModel.findById(req.params.id);
         if (!product) {
             return res.status(404).json({ success: false, message: "Product not found" });
         }
@@ -45,11 +46,11 @@ const getProductList = async (req, res, next) => {
 
 const deleteProduct = async (req, res, next) => {
     try {
-        const product = await productModel.findOneAndDelete({ productId: req.params.id });      
+        const product = await productModel.findOneAndDelete(Number(req.params.id));
         if (!product) {
             return res.status(404).json({ success: false, message: "Product not found" });
         }
-        return res.status(200).json({ success: true, message: "Product deleted successfully", data: product });
+        return res.status(200).json({ success: true, message: "Product deleted successfully" });
     } catch (error) {
         next(error)
     }
@@ -115,7 +116,8 @@ const updateCartItems = async (req, res, next) => {
         if (!Array.isArray(cartItems) || cartItems.length === 0) {
             return res.status(400).json({ success: false, message: "cartItems must be a non-empty array" });
         }
-        const products = await productModel.find({ productId: { $in: cartItems } });
+        const productIdsCart = cartItems.map(item => item.productId);
+        const products = await productModel.find({ productId: { $in: productIdsCart } });
         if (products.length !== cartItems.length) {
             return res.status(404).json({ success: false, message: "Some products not found" });
         }
@@ -125,8 +127,9 @@ const updateCartItems = async (req, res, next) => {
                 { $set: { isAddedInCart: true, userQuantity: item.quantity } }
             );
         }
+        const productIds = cartItems.map(item => item.productId);
         const updatedProducts = await productModel.find({ productId: { $in: productIds } });
-        return res.status(200).json({ success: true, message: "Products added to cart successfully", data: updatedProducts });
+        return res.status(200).json({ success: true, message: "Products updated in cart successfully", data: updatedProducts });
     } catch (error) {
         next(error);
     }
