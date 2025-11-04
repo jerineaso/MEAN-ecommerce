@@ -21,7 +21,7 @@ app.use(compression());
 app.use(express.json()); // For PUT, POST
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({
-    origin: true, // Set to your frontend URL in production
+    origin: 'https://mean-ecommerce-qjux.onrender.com', // Set to your frontend URL in production
     optionsSuccessStatus: 200 
 }))
 app.use(cookieparser())
