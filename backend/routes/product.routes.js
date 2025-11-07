@@ -17,7 +17,7 @@ productRoute.route('/update-cart-items').put(authMiddleware, updateCartItems);
 productRoute.route('/create-order').post(authMiddleware, createOrder);
 
 // Use dynamic route at last
-productRoute.route('/product/:id').get(getProductDetails).delete(authMiddleware, deleteProduct);
+productRoute.route('/:id').get(getProductDetails).delete(authMiddleware, deleteProduct);
 
 
 module.exports = productRoute;
