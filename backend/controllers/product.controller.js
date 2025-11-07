@@ -3,8 +3,23 @@ const userModel = require("../models/user.model");
 
 const getAllCategories = async (req, res, next) => {
     try {
-        const category = await productModel.distinct('category'); // distinct used to get the category data without any duplication in an array
-        return res.status(200).json({ success: true, message: 'All categories', data: category }); // Success generation
+        // Group by category and get the first icon for each category
+        const categories = await productModel.aggregate([
+            {
+                $group: {
+                    _id: "$category",
+                    icon: { $first: "$icon" }
+                }
+            },
+            {
+                $project: {
+                    _id: 0,
+                    category: "$_id", // replace data from above
+                    icon: 1 // add icon field
+                }
+            }
+        ]);
+        return res.status(200).json({ success: true, message: 'All categories', data: categories });
     } catch (error) {
         next(error);
     }
@@ -15,8 +30,9 @@ const createProduct = async (req, res, next) => {
         if (!req.body || Object.keys(req.body).length === 0) {
             return res.status(400).json({ success: false, message: "Request body cannot be empty" });
         }
-        const count = await productModel.countDocuments();
-        const product = await productModel.create({ ...req.body, productId: count + 1 });
+        const lastProduct = await productModel.findOne().sort({ productId: -1 });
+        const nextProductId = lastProduct ? lastProduct.productId + 1 : 1;
+        const product = await productModel.create({ ...req.body, productId: nextProductId });
         return res.status(201).json({ success: true, message: "Product created successfully", data: product });
     } catch (error) {
        next(error)
